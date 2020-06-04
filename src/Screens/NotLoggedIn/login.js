@@ -53,12 +53,11 @@ class Login extends Component {
         super(props);
         this.state = {
             username: '',
-            password: '',
+            password: 'password',
         }
     }
 
     login = () => {
-        // e.preventDefault();
         let providedUsername = this.props.userData[0].username,
             providedPassword = this.props.userData[0].password;
 
@@ -145,11 +144,10 @@ class Login extends Component {
                                 name="password"
                                 autoCapitalize= "none"
                                 secureTextEntry
-                                value="password"
                                 containerStyle= {{paddingLeft: '10%', paddingRight: '10%'}}
                                 inputContainerStyle = {{ borderRadius: 20, color: '#000000', borderColor: '#E5E4E0', opacity: 0.8, borderWidth: 2 }}
                                 inputStyle={{ marginLeft: 10, color: '#ffffff', opacity: 0.8}}
-                                value={this.state.password || ''}
+                                value={this.state.password}
                                 onChangeText={(password)=> this.setState({ password })}
                             />
                             <Text style={{ fontSize: 18, textAlign: 'center', marginBottom: 30, fontWeight: 'bold'}}>Forgot Password? </Text>

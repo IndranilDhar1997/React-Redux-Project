@@ -49,6 +49,9 @@ export default class Login extends Component {
     
     constructor(props) {
         super(props);
+        this.state = {
+            password: 'password'
+        }
     }
 
     
@@ -96,7 +99,8 @@ export default class Login extends Component {
                                 name="password"
                                 autoCapitalize= "none"
                                 secureTextEntry
-                                value="password"
+                                value={this.state.password}
+                                onChangeText={(password)=> this.setState({ password })}
                                 containerStyle= {{paddingLeft: '10%', paddingRight: '10%'}}
                                 inputContainerStyle = {{ borderRadius: 20, color: '#000000', borderColor: '#E5E4E0', opacity: 0.8, borderWidth: 2 }}
                                 inputStyle={{ marginLeft: 10, color: '#ffffff', opacity: 0.8}}

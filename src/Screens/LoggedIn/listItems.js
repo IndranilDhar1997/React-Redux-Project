@@ -263,7 +263,7 @@ export default class ListItems extends Component {
                         </Card>
                     </View>
                 </View>
-                <View style = {{ flex: 1, flexDirection: 'row'}}>
+                <View style = {{ flex: 1, flexDirection: 'row', marginBottom: 20}}>
                     <View style={{ width: '50%'}}>
                         <Card 
                             image={require('../../Images/cardimage.jpeg')}
