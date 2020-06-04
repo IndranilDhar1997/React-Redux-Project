@@ -1,5 +1,8 @@
-import React, { Component,Fragment } from 'react';
-import { View, Text } from 'react-native';
+import React, { Component, Fragment } from 'react';
+import {View } from 'react-native';
+
+import HeaderComponent from './ui/header';
+import Tabbar from './ui/tabbar';
 
 export default class Dashboard extends Component {
     
@@ -10,9 +13,9 @@ export default class Dashboard extends Component {
     render() { 
         return ( 
             <Fragment>
-                <View style={{ flex: 1}}>
-                    <Text style={{ fontSize: 20, textAlign: 'center', marginTop: '50%', fontWeight: 'bold'}}>Dashboard Page</Text>
-                </View>
+                <HeaderComponent />
+                <View style={{ backgroundColor: '#F8F8FF'}}></View>
+                <Tabbar />
             </Fragment>
         );
     }

@@ -1,6 +1,8 @@
 import React, { Component,Fragment } from 'react';
-import { View, ToastAndroid, StyleSheet, ScrollView, Image } from 'react-native';
+import { View, ToastAndroid, StyleSheet, ScrollView, Image, ImageBackground, Text } from 'react-native';
 import { Input, Button } from 'react-native-elements';
+import LinearGradient from 'react-native-linear-gradient';
+import { SocialIcon } from 'react-native-elements'
 import { connect } from 'react-redux';
 import { loginUserData } from '../../actions'; 
 
@@ -13,20 +15,35 @@ const styles = StyleSheet.create({
         height: '100%',
         justifyContent: 'center',
         resizeMode: 'contain',
-        opacity: 0.1
+        opacity: 0.8
     },
     logo: {
         height: 50,
-        width: 200,
-        marginTop: "30%",
-        marginLeft: '25%',
-        resizeMode: 'contain',
+        width: 300,
+        marginTop: '10%',
+        marginLeft: '15%'
+    },
+    tagLine: {
+        fontSize: 16,
+        fontWeight: '600',
+        marginTop: 10,
+        textAlign: 'center',
+        opacity: 0.4
+    },
+    linearGradient: {
+        backgroundColor: "transparent",
+        position: "absolute",
+        top: 0,
+        bottom: 0,
+        left: 0,
+        right: 0
     },
     container: {
         flex: 1,
         flexDirection: 'row',
+        justifyContent: 'center',
         alignItems: 'center',
-        justifyContent: 'center'
+        marginTop: 20
     },
 })
 
@@ -100,37 +117,74 @@ class Login extends Component {
     }
 
     render() { 
-        return ( 
+        return (
             <Fragment>
                 <View style={{ flex: 1}}>
-                <Image style={styles.backgroundImage} source={require('../../Images/car.png')}></Image>
-                <Image style={ styles.logo } source={require('../../Images/logo.png')}></Image>
-                <ScrollView>
-                    <View style={{ marginTop: '20%'}}>
-                        <Input
-                            placeholder='test@gmail.com'
-                            name="username"
-                            autoCapitalize = "none"
-                            value={this.state.username || ''}
-                            onChangeText={(username)=> this.setState({ username })}
-                        />
-                        <Input
-                            placeholder='test123'
-                            name="password"
-                            value={this.state.password || ''}
-                            autoCapitalize= "none"
-                            secureTextEntry
-                            onChangeText={(password)=> this.setState({ password })}
-                        />
-                        <Button 
-                            title = "Log in" 
-                            type="outline"
-                            onPress={()=> this.login()}
-                            containerStyle = {{ width: '100%', paddingLeft: '10%', paddingRight: '10%', color: 'transparent' }}
-                            buttonStyle = {{ borderRadius: 20, backgroundColor: '#000000', color: 'transparent' }}
-                        />
-                    </View>
-                </ScrollView>
+                    <ImageBackground style={styles.backgroundImage}>
+                        <LinearGradient colors={['#FF7F50', '#FED8B1']} locations={[0.3,1.1]} style={styles.linearGradient} />
+                    </ImageBackground>
+                    <Image style={ styles.logo } source={require('../../Images/logo.png')}></Image>
+                    <Text style={ styles.tagLine }>Tag Line Goes Here</Text>
+                    <ScrollView>
+                        <View style={{ marginTop: '20%'}}>
+                            <Text style= {{ marginLeft: 60, marginBottom: 10, fontWeight: '600', fontSize: 20, color: '#ffffff', opacity: 0.8}}>User Name</Text>
+                            <Input
+                                placeholder='Reema Sen'
+                                name="username"
+                                autoCapitalize = "none"
+                                containerStyle= {{paddingLeft: '10%', paddingRight: '10%'}}
+                                inputContainerStyle = {{ borderRadius: 20, color: '#000000', borderColor: '#E5E4E0', opacity: 0.8, borderWidth: 2 }}
+                                inputStyle={{ marginLeft: 10, color: '#ffffff', opacity: 0.8}}
+                                value={this.state.username || ''}
+                                onChangeText={(username)=> this.setState({ username })}
+                            />
+
+                            <Text style= {{ marginLeft: 60, marginBottom: 10, fontWeight: '600', fontSize: 20, color: '#ffffff', opacity: 0.8}}>Password</Text>
+                            <Input
+                                placeholder='Password'
+                                name="password"
+                                autoCapitalize= "none"
+                                secureTextEntry
+                                value="password"
+                                containerStyle= {{paddingLeft: '10%', paddingRight: '10%'}}
+                                inputContainerStyle = {{ borderRadius: 20, color: '#000000', borderColor: '#E5E4E0', opacity: 0.8, borderWidth: 2 }}
+                                inputStyle={{ marginLeft: 10, color: '#ffffff', opacity: 0.8}}
+                                value={this.state.password || ''}
+                                onChangeText={(password)=> this.setState({ password })}
+                            />
+                            <Text style={{ fontSize: 18, textAlign: 'center', marginBottom: 30, fontWeight: 'bold'}}>Forgot Password? </Text>
+                            <Button 
+                                title = "Sign in" 
+                                onPress={()=> this.login()}
+                                containerStyle = {{ width: '100%', paddingLeft: '10%', paddingRight: '10%', paddingTop: '5%', marginBottom: 20}}
+                                buttonStyle = {{ borderRadius: 20, backgroundColor: '#000000' }}
+                            />
+                        </View>
+                        <View style={styles.container}>
+                            <View>
+                                <SocialIcon 
+                                    type='facebook' 
+                                    iconSize= {26}
+                                    light={true}
+                                />
+                            </View>
+                            <View>
+                                <SocialIcon 
+                                    type='google-plus' 
+                                    iconSize= {26}
+                                    light={true}
+                                />
+                            </View>
+                            <View>
+                                <SocialIcon 
+                                    type='wechat' 
+                                    iconSize= {26}
+                                    light={true}
+                                />
+                            </View>
+                        </View>
+                        <Text style={{ fontSize: 18, opacity: 0.6, textAlign: 'center', marginTop: 30}}>Don't have an account? <Text style={{fontWeight: 'bold', fontSize: 18}} onPress={()=> this.props.navigation.navigate('Register')}> Sign up</Text></Text>
+                    </ScrollView>
                 </View>
             </Fragment>
         );
